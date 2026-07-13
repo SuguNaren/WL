@@ -148,6 +148,14 @@ GitHub alone does not host:
 - NestJS backend APIs
 - server-side databases
 
+This repo can publish the React frontend to GitHub Pages at:
+
+- `https://sugunaren.github.io/WL/`
+
+But for login, employee data, workload saving, and reports to work live, you must also host the backend API and set:
+
+- GitHub Actions secret: `VITE_API_URL`
+
 If you specifically want a GitHub domain style URL, the frontend can be published from GitHub Pages, but the backend and production database still need separate hosting.
 
 ## Default seeded accounts
