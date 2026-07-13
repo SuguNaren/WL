@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Employee {
+  id           Int        @id @default(autoincrement())
+  employeeId   String     @unique
+  name         String
+  designation  String
+  department   String
+  dob          DateTime
+  isActive     Boolean    @default(true)
+  user         User?
+  workloads    Workload[]
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}
+
+model User {
+  id                 Int       @id @default(autoincrement())
+  username           String?   @unique
+  passwordHash       String
+  role               String
+  mustChangePassword Boolean   @default(false)
+  employeeId         Int?      @unique
+  employee           Employee? @relation(fields: [employeeId], references: [id])
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+}
+
+model Workload {
+  id                  Int        @id @default(autoincrement())
+  workDate            DateTime
+  workType            String
+  workDescription     String
+  workSharedByTeam    String
+  detailedDescription String
+  status              String
+  otherStatus         String?
+  employeeId          Int
+  employee            Employee   @relation(fields: [employeeId], references: [id])
+  createdAt           DateTime   @default(now())
+  updatedAt           DateTime   @updatedAt
+}

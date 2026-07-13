@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: employee_workload_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: employee_workload
+      POSTGRES_USER: employee_admin
+      POSTGRES_PASSWORD: employee_secret_2026
+    ports:
+      - '5435:5432'
+    volumes:
+      - employee_workload_pgdata:/var/lib/postgresql/data
+
+volumes:
+  employee_workload_pgdata:
