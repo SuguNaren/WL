@@ -3,7 +3,7 @@ services:
     name: employee-workload-api
     runtime: node
     rootDir: backend
-    buildCommand: npm install && npm run build
+    buildCommand: npm install && npx prisma db push --schema prisma/schema.prisma && npm run build
     startCommand: npm run start
     envVars:
       - key: DATABASE_URL

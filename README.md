@@ -93,6 +93,13 @@ To make this behave like your earlier live dynamic project, deploy it in three p
 
 This repo includes `render.yaml` for backend deployment.
 
+Render will:
+
+- install backend dependencies
+- run `prisma db push` against your production database
+- build the NestJS API
+- start the compiled backend
+
 Backend environment values you will set on the host:
 
 - `DATABASE_URL`
@@ -107,6 +114,13 @@ Set this in the frontend host:
 ```bash
 VITE_API_URL=https://your-backend-domain.onrender.com
 ```
+
+Recommended frontend host settings:
+
+- Framework preset: `Vite`
+- Root directory: `frontend`
+- Build command: `npm run build`
+- Output directory: `dist`
 
 After that, the app works as a real dynamic system:
 
